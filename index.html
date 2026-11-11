@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disturbed — Официальный фан-сайт</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #0a0a0a;
+            border-bottom: 2px solid #b30000;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 900;
+            color: #b30000;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        nav {
+            display: flex;
+            gap: 10px;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 8px 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .tab-btn:hover {
+            color: #b30000;
+            background-color: rgba(179, 0, 0, 0.1);
+        }
+
+        .tab-btn.active {
+            background-color: #b30000;
+            color: #ffffff;
+        }
+
+        main {
+            flex: 1;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(18, 18, 18, 1)), url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+            padding: 4rem 1rem 3rem 1rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #b0b0b0;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: #b30000;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #333;
+            padding-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .timeline {
+            border-left: 3px solid #b30000;
+            padding-left: 20px;
+            margin-left: 10px;
+        }
+
+        .timeline-item {
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -27px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            background-color: #b30000;
+            border-radius: 50%;
+        }
+
+        .timeline-date {
+            font-weight: bold;
+            color: #b30000;
+            font-size: 1.1rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background-color: #1e1e1e;
+            padding: 1.5rem;
+            border-radius: 6px;
+            border: 1px solid #2a2a2a;
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            border-color: #b30000;
+        }
+
+        .card h3 {
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .card .role {
+            color: #b30000;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .track-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            background-color: #1e1e1e;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .track-table th, .track-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #2a2a2a;
+        }
+
+        .track-table th {
+            background-color: #151515;
+            color: #b30000;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .track-table tr:hover {
+            background-color: #252525;
+        }
+
+        footer {
+            background-color: #0a0a0a;
+            text-align: center;
+            padding: 1.5rem;
+            color: #666;
+            border-top: 1px solid #222;
+            margin-top: auto;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo">Disturbed</div>
+            <nav>
+                <button class="tab-btn active" onclick="openTab(event, 'history')">История</button>
+                <button class="tab-btn" onclick="openTab(event, 'members')">Музыканты</button>
+                <button class="tab-btn" onclick="openTab(event, 'tracks')">Треки и Альбомы</button>
+                <button class="tab-btn" onclick="openTab(event, 'contacts')">Контакты</button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Disturbed</h1>
+            <p>Американская метал-группа из Чикаго. Более 17 миллионов проданных альбомов по всему миру.</p>
+        </section>
+
+        <div class="container">
+            <!-- Вкладка: История -->
+            <section id="history" class="tab-content active">
+                <h2>История группы</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">1994 — 1996: Основание и приход Дреймана</div>
+                        <p>Группа была сформирована гитаристом Дэном Дониганом, басистом Стивом Кмаком и барабанщиком Майком Венгреном под названием <em>Brawl</em>. В 1996 году к ним присоединился вокалист Дэвид Дрейман, после чего коллектив сменил название на <strong>Disturbed</strong>.</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-date">2000: Дебютный альбом «The Sickness»</div>
+                        <p>Выход первого альбома принёс группе мировой успех благодаря синглу <strong>«Down with the Sickness»</strong>. Альбом стал пятикратно платиновым в США и закрепил за ними статус лидеров альтернативного метала.</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-date">2002 — 2010: Серия успешных релизов</div>
+                        <p>Альбомы <em>Believe (2002)</em>, <em>Ten Thousand Fists (2005)</em>, <em>Indestructible (2008)</em> и <em>Asylum (2010)</em> подряд дебютировали на первой строчке чарта Billboard 200 — редкое достижение для рок-исполнителей.</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-date">2011 — 2015: Перерыв и «The Sound of Silence»</div>
+                        <p>После длительного творческого отпуска группа вернулась с альбомом <em>Immortalized (2015)</em>. Кавер-версия песни Simon & Garfunkel <strong>«The Sound of Silence»</strong> стала глобальным феноменом, набрав сотни миллионов просмотров и номинацию на «Грэмми».</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-date">2018 — Настоящее время</div>
+                        <p>Группа продолжила эксперименты со звучанием на альбоме <em>Evolution (2018)</em> и вернулась к тяжелым корням с релизом <em>Divisive (2022)</em>, активными мировыми турами и новыми проектами.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Вкладка: Музыканты -->
+            <section id="members" class="tab-content">
+                <h2>Участники группы</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3>Дэвид Дрейман</h3>
+                        <div class="role">Вокал (1996 — н.в.)</div>
+                        <p>Фронтмен и вокалист с узнаваемым ритмичным рыком и мощным чистым голосом. Главный автор лирики группы.</p>
+                    </div>
+
+                    <div class="card">
+                        <h3>Дэн Дониган</h3>
+                        <div class="role">Соло/ритм-гитара, клавишные (1994 — н.в.)</div>
+                        <p>Один из основателей группы. Отвечает за тяжелые риффы, гитарные соло и электронику в треках.</p>
+                    </div>
+
+                    <div class="card">
+                        <h3>Майк Венгрен</h3>
+                        <p class="role">Ударные, перкуссия (1994 — н.в.)</p>
+                        <p>Сооснователь коллектива. Его мощный стиль игры на барабанах задаёт ритм всей музыке Disturbed.</p>
+                    </div>
+
+                    <div class="card">
+                        <h3>Джон Мойер</h3>
+                        <div class="role">Бас-гитара, бэк-вокал (2004 — н.в.)</div>
+                        <p>Присоединился к группе во время записи альбома <em>Ten Thousand Fists</em>, заменив оригинального басиста Стива Кмака.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Вкладка: Треки и Альбомы -->
+            <section id="tracks" class="tab-content">
+                <h2>Популярные треки</h2>
+                <table class="track-table">
+                    <thead>
+                        <tr>
+                            <th>№</th>
+                            <th>Название трека</th>
+                            <th>Альбом</th>
+                            <th>Год</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Down with the Sickness</td>
+                            <td>The Sickness</td>
+                            <td>2000</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Prayer</td>
+                            <td>Believe</td>
+                            <td>2002</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Stricken</td>
+                            <td>Ten Thousand Fists</td>
+                            <td>2005</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Indestructible</td>
+                            <td>Indestructible</td>
+                            <td>2008</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Inside the Fire</td>
+                            <td>Indestructible</td>
+                            <td>2008</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>The Sound of Silence</td>
+                            <td>Immortalized</td>
+                            <td>2015</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>Are You Ready</td>
+                            <td>Evolution</td>
+                            <td>2018</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>Unstoppable</td>
+                            <td>Divisive</td>
+                            <td>2022</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Вкладка: Контакты -->
+            <section id="contacts" class="tab-content">
+                <h2>О проекте</h2>
+                <div class="card">
+                    <h3>Фан-ресурс Disturbed</h3>
+                    <p style="margin-top: 10px;">Этот сайт создан в демонстрационных целях для поклонников творчества группы.</p>
+                    <p style="margin-top: 10px;">Для получения информации о концертах и официальном мерче посетите официальный ресурс:</p>
+                    <p style="margin-top: 15px;">
+                        <a href="https://www.disturbed1.com" target="_blank" style="color: #b30000; font-weight: bold; text-decoration: none;">
+                            www.disturbed1.com &rarr;
+                        </a>
+                    </p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Disturbed Fan Club. Все права на контент принадлежат их законным владельцам.</p>
+    </footer>
+
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+
+            tablinks = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+    </script>
+</body>
+</html>
